@@ -14,7 +14,7 @@ public class Contact {
     private String color;
     private char pref;
 
-    public Contact(String name, String flag, String data, String color, char pref)
+    Contact(String name, String flag, String data, String color, char pref)
     {
         this.name = name;
         this.flag = flag;
