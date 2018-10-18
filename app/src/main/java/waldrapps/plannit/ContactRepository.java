@@ -8,13 +8,13 @@ import java.util.List;
 
 public class ContactRepository {
     
-    private ContactDoa contactDoa;
+    private ContactDao contactDao;
     private LiveData<List<Contact>> allContacts;
 
     ContactRepository(Application application) {
         ContactDatabaseSingleton db = ContactDatabaseSingleton.getDatabase(application);
-        contactDoa = db.contactDoa();
-        allContacts = contactDoa.getAllContacts();
+        contactDao = db.contactDoa();
+        allContacts = contactDao.getAllContacts();
     }
 
     LiveData<List<Contact>> getAllContacts() {
@@ -22,18 +22,18 @@ public class ContactRepository {
     }
 
     public void insert(Contact contact) {
-        new insertAsyncTask(contactDoa).execute(contact);
+        new insertAsyncTask(contactDao).execute(contact);
     }
 
     public Contact getContactById(int id) {
-        return contactDoa.getContactById(id);
+        return contactDao.getContactById(id);
     }
 
     private static class insertAsyncTask extends AsyncTask<Contact, Void, Void> {
 
-        private ContactDoa asyncTaskDao;
+        private ContactDao asyncTaskDao;
 
-        insertAsyncTask(ContactDoa dao) {
+        insertAsyncTask(ContactDao dao) {
             asyncTaskDao = dao;
         }
 

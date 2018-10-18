@@ -7,7 +7,7 @@ import android.arch.lifecycle.LiveData;
 import java.util.List;
 
 public class ContactViewModel extends AndroidViewModel {
-    
+
     private ContactRepository repository;
 
     private LiveData<List<Contact>> allContacts;

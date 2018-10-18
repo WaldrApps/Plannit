@@ -9,7 +9,7 @@ import android.arch.persistence.room.Query;
 import java.util.List;
 
 @Dao
-public interface ContactDoa {
+public interface ContactDao {
     @Insert
     void insert(Contact contact);
 
