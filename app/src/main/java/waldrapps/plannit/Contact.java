@@ -11,11 +11,11 @@ public class Contact {
     private String name;
     private String data;
     private String flag;
-    private String color;
+    private int color;
     private String planner;
     private char pref;
 
-    Contact(String name, String flag, String data, String color, char pref)
+    Contact(String name, String flag, String data, int color, char pref)
     {
         this.name = name;
         this.data = data;
@@ -37,8 +37,8 @@ public class Contact {
     public String getFlag() { return flag; }
     public void setFlag(String flag) { this.flag = flag; }
 
-    public String getColor() { return color; }
-    public void setColor(String color) { this.color = color; }
+    public int getColor() { return color; }
+    public void setColor(int color) { this.color = color; }
 
     public String getPlanner() { return planner; }
     public void setPlanner(String planner) { this.planner = planner; }

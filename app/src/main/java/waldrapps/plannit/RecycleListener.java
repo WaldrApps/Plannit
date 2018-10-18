@@ -27,7 +27,7 @@ public class RecycleListener implements View.OnClickListener {
     private Context context;
     private ContactAdapter local;
     private String comeFrom;
-    ArrayList<Contact> contacts = new ArrayList<>();
+    ArrayList<Contact> contacts;
     private char [] prefs;
     public RecycleListener(int loc, ArrayList<Contact> contacts, char [] prefs, Context context, String comeFrom, ContactAdapter local)
     {
@@ -88,28 +88,27 @@ public class RecycleListener implements View.OnClickListener {
             {
                 clicked[i] = (s.charAt(i)=='1');
             }
-            Intent intent = new Intent(context, EnterSchedule.class);
-            intent.putExtra("PLANNER", clicked);
-            intent.putExtra("PREFS", prefs);
-            context.startActivity(intent);
+//            Intent intent = new Intent(context, EnterSchedule.class);
+//            intent.putExtra("PLANNER", clicked);
+//            intent.putExtra("PREFS", prefs);
+//            context.startActivity(intent);
         }
         else if(comeFrom.equals("SHARE"))
         {
 
-            Intent intent = new Intent(context, ShareScreen.class);
-            intent.putExtra("PREFS", prefs);
-            intent.putExtra("PLANNER", contacts.get(loc).getPlanner());
-            intent.putExtra("NAME", contacts.get(loc).getName());
-            context.startActivity(intent);
+//            Intent intent = new Intent(context, ShareScreen.class);
+//            intent.putExtra("PREFS", prefs);
+//            intent.putExtra("PLANNER", contacts.get(loc).getPlanner());
+//            intent.putExtra("NAME", contacts.get(loc).getName());
+//            context.startActivity(intent);
         }
         else
         {
-            Intent intent = new Intent(context, DisplayScreen.class);
-            intent.putExtra("PLANNER", contacts.get(loc).getPlanner());
-            intent.putExtra("NAME", contacts.get(loc).getName());
-            intent.putExtra("PREFS", prefs);
-
-            context.startActivity(intent);
+//            Intent intent = new Intent(context, DisplayScreen.class);
+//            intent.putExtra("PLANNER", contacts.get(loc).getPlanner());
+//            intent.putExtra("NAME", contacts.get(loc).getName());
+//            intent.putExtra("PREFS", prefs);
+//            context.startActivity(intent);
         }
     }
 
@@ -124,7 +123,7 @@ public class RecycleListener implements View.OnClickListener {
     {
         //Save to personal file
         FileOutputStream fos = null;
-        FileIO fileIO = new FileIO(context.getApplicationContext());
+//        FileIO fileIO = new FileIO(context.getApplicationContext());
         String fileName = "saveFile";
         File file = new File(context.getApplicationContext().getFilesDir(), fileName);
         String fileSaveString;
@@ -138,13 +137,13 @@ public class RecycleListener implements View.OnClickListener {
             }
             else
             {
-                fileSaveString = saveString + "\n" + fileIO.getOldContents();
+//                fileSaveString = saveString + "\n" + fileIO.getOldContents();
             }
-            Log.d("fileSaveString", fileSaveString);
+//            Log.d("fileSaveString", fileSaveString);
             //Create file
             fos = context.openFileOutput("saveFile", Context.MODE_PRIVATE);
             //Write to file
-            fos.write(fileSaveString.getBytes());
+//            fos.write(fileSaveString.getBytes());
 
         }
         catch(Exception e)

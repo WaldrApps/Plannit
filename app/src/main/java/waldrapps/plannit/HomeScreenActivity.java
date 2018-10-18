@@ -2,6 +2,8 @@ package waldrapps.plannit;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -9,6 +11,7 @@ import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -16,6 +19,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -31,14 +35,16 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
-public class HomeScreenActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
-{
+public class HomeScreenActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     //friends: array of friends names, planners: binary array of planner data, flags: contact flags, prefs: binary array of preference data
     ArrayList<Contact> contacts = new ArrayList<>();
     char [] prefs;
 
     final int pref = 10;
+    private ContactViewModel contactViewModel;
+    private ContactAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +53,17 @@ public class HomeScreenActivity extends AppCompatActivity implements NavigationV
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //Read input from save file
+        //RecyclerView
+        setupRecyclerView();
+        contactViewModel = ViewModelProviders.of(this).get(ContactViewModel.class);
+        contactViewModel.getAllContacts().observe(this, new Observer<List<Contact>>() {
+            @Override
+            public void onChanged(@Nullable final List<Contact> contacts) {
+                //Update the cached copy of contacts in the adapter
+                adapter.setContacts(contacts);
+            }
+        });
+
         ArrayList<ArrayList<String>> string = readFile();
         prefs = readPrefs();
 
@@ -67,13 +83,6 @@ public class HomeScreenActivity extends AppCompatActivity implements NavigationV
             contacts.add(new Contact(friends[i], planners[i], flag[i], colors[i], '?'));
         }
 
-        //RecyclerView
-        RecyclerView recycleView = findViewById(R.id.content_home_screen);
-        recycleView.setHasFixedSize(true);
-        //RecyclerView layout manager
-        recycleView.setLayoutManager(new LinearLayoutManager(this));
-        //RecyclerView adapter
-        recycleView.setAdapter(new ContactAdapter(contacts, this.prefs, this, "HOME"));
 
         //set title
         setTitle("Plannit");
@@ -95,14 +104,14 @@ public class HomeScreenActivity extends AppCompatActivity implements NavigationV
             LinearLayout layout = findViewById(R.id.col1);
             TextView text = new TextView(this);
         }
-        //create navigation drawer
+        //Create navigation drawer
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
@@ -553,48 +562,11 @@ public class HomeScreenActivity extends AppCompatActivity implements NavigationV
         }
     }
 
-//    protected static void buttonColorSet(FloatingActionButton fab, String [] colors, int i)
-//    {
-//        //Set color of button
-//        if(colors[i].equals("b"))
-//        {
-//            fab.setBackgroundTintList(ColorStateList.valueOf(Color.BLUE));
-//        }
-//        else if(colors[i].equals("c"))
-//        {
-//            fab.setBackgroundTintList(ColorStateList.valueOf(Color.CYAN));
-//        }
-//        else if(colors[i].equals("d"))
-//        {
-//            fab.setBackgroundTintList(ColorStateList.valueOf(Color.DKGRAY));
-//        }
-//        else if(colors[i].equals("l"))
-//        {
-//            fab.setBackgroundTintList(ColorStateList.valueOf(Color.LTGRAY));
-//        }
-//        else if(colors[i].equals("e"))
-//        {
-//            fab.setBackgroundTintList(ColorStateList.valueOf(Color.GRAY));
-//        }
-//        else if(colors[i].equals("g"))
-//        {
-//            fab.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
-//        }
-//        else if(colors[i].equals("m"))
-//        {
-//            fab.setBackgroundTintList(ColorStateList.valueOf(Color.MAGENTA));
-//        }
-//        else if(colors[i].equals("r"))
-//        {
-//            fab.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
-//        }
-//        else if(colors[i].equals("y"))
-//        {
-//            fab.setBackgroundTintList(ColorStateList.valueOf(Color.YELLOW));
-//        }
-//        else
-//        {
-//            fab.setBackgroundTintList(ColorStateList.valueOf(Color.BLACK));
-//        }
-//    }
+    private void setupRecyclerView() {
+        RecyclerView recyclerView = findViewById(R.id.content_home_screen);
+        adapter = new ContactAdapter(this);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+    }
 }
