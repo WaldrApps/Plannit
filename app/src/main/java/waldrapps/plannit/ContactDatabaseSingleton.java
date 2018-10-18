@@ -10,7 +10,7 @@ public abstract class ContactDatabaseSingleton extends RoomDatabase{
 
     private static volatile ContactDatabaseSingleton INSTANCE;
 
-    public abstract ContactDoa contactDoa();
+    public abstract ContactDao contactDoa();
 
     static ContactDatabaseSingleton getDatabase(final Context context) {
         if (INSTANCE == null) {

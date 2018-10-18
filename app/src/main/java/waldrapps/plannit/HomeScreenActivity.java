@@ -9,19 +9,22 @@ import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -39,7 +42,6 @@ public class HomeScreenActivity extends AppCompatActivity implements NavigationV
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //default
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -66,7 +68,7 @@ public class HomeScreenActivity extends AppCompatActivity implements NavigationV
         }
 
         //RecyclerView
-        RecyclerView recycleView = (RecyclerView)findViewById(R.id.content_home_screen);
+        RecyclerView recycleView = findViewById(R.id.content_home_screen);
         recycleView.setHasFixedSize(true);
         //RecyclerView layout manager
         recycleView.setLayoutManager(new LinearLayoutManager(this));
@@ -128,7 +130,7 @@ public class HomeScreenActivity extends AppCompatActivity implements NavigationV
     @Override
     public void onBackPressed()
     {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START))
         {
             drawer.closeDrawer(GravityCompat.START);
@@ -158,22 +160,22 @@ public class HomeScreenActivity extends AppCompatActivity implements NavigationV
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings)
         {
-            Intent intent = new Intent(this, DeleteScreen.class);
+//            Intent intent = new Intent(this, DeleteScreen.class);
             Bundle b = new Bundle();
             b.putSerializable("CONTACTS", contacts);
             b.putSerializable("PREFS", prefs);
-            intent.putExtras(b);
-            startActivity(intent);
+//            intent.putExtras(b);
+//            startActivity(intent);
             return true;
         }
         else if(id == R.id.edit)
         {
-            Intent intent = new Intent(this, EditScreen.class);
+//            Intent intent = new Intent(this, EditScreen.class);
             Bundle b = new Bundle();
             b.putSerializable("CONTACTS", contacts);
-            intent.putExtras(b);
-            intent.putExtra("PREFS", prefs);
-            startActivity(intent);
+//            intent.putExtras(b);
+//            intent.putExtra("PREFS", prefs);
+//            startActivity(intent);
             return true;
         }
         else if(id==R.id.help)
@@ -210,7 +212,7 @@ public class HomeScreenActivity extends AppCompatActivity implements NavigationV
             about();
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -252,9 +254,9 @@ public class HomeScreenActivity extends AppCompatActivity implements NavigationV
         }
         else
         {
-            Intent intent = new Intent(this, ReadScreen.class);
-            intent.putExtra("PREFS", prefs);
-            startActivity(intent);
+//            Intent intent = new Intent(this, ReadScreen.class);
+//            intent.putExtra("PREFS", prefs);
+//            startActivity(intent);
         }
     }
     //read contact info
@@ -335,9 +337,9 @@ public class HomeScreenActivity extends AppCompatActivity implements NavigationV
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED)
                 {
-                    Intent intent = new Intent(this, ReadScreen.class);
-                    intent.putExtra("PREFS", prefs);
-                    startActivity(intent);
+//                    Intent intent = new Intent(this, ReadScreen.class);
+//                    intent.putExtra("PREFS", prefs);
+//                    startActivity(intent);
                 }
                 else
                 {
@@ -354,12 +356,12 @@ public class HomeScreenActivity extends AppCompatActivity implements NavigationV
     //drawer run methods
     private void shareSelect()
     {
-        Intent intent = new Intent(this, ShareSelectScreen.class);
-        intent.putExtra("PREFS", prefs);
+//        Intent intent = new Intent(this, ShareSelectScreen.class);
+//        intent.putExtra("PREFS", prefs);
         Bundle b = new Bundle();
         b.putSerializable("CONTACTS", contacts);
-        intent.putExtras(b);
-        startActivity(intent);
+//        intent.putExtras(b);
+//        startActivity(intent);
     }
     public void init(boolean clicked[])
     {
@@ -373,26 +375,26 @@ public class HomeScreenActivity extends AppCompatActivity implements NavigationV
     {
         boolean [] clicked = new boolean [140];
         init(clicked);
-        Intent intent = new Intent(this, EnterSchedule.class);
-        intent.putExtra("PLANNER", clicked);
-        intent.putExtra("PREFS", prefs);
-        startActivity(intent);
+//        Intent intent = new Intent(this, EnterSchedule.class);
+//        intent.putExtra("PLANNER", clicked);
+//        intent.putExtra("PREFS", prefs);
+//        startActivity(intent);
     }
 
     private void createGroup()
     {
-        Intent intent = new Intent(this, group.class);
+//        Intent intent = new Intent(this, group.class);
 
-        intent.putExtra("PREFS", prefs);
+//        intent.putExtra("PREFS", prefs);
         Bundle b = new Bundle();
         b.putSerializable("CONTACTS", contacts);
-        intent.putExtras(b);
-        startActivity(intent);
+//        intent.putExtras(b);
+//        startActivity(intent);
     }
     private void about()
     {
-        Intent intent = new Intent(this, AboutScreen.class);
-        startActivity(intent);
+//        Intent intent = new Intent(this, AboutScreen.class);
+//        startActivity(intent);
     }
 
     //delete files method
@@ -420,7 +422,7 @@ public class HomeScreenActivity extends AppCompatActivity implements NavigationV
         {
             //Save to personal file
             FileOutputStream fos = null;
-            FileIO fileIO = new FileIO(getApplicationContext());
+//            FileIO fileIO = new FileIO(getApplicationContext());
             file.delete();
             String fileSaveString = "";
             for(int i=0;i<pref;i++)
@@ -513,7 +515,7 @@ public class HomeScreenActivity extends AppCompatActivity implements NavigationV
     {
         //Save to personal file
         FileOutputStream fos = null;
-        FileIO fileIO = new FileIO(getApplicationContext());
+//        FileIO fileIO = new FileIO(getApplicationContext());
         String fileName = "preferences";
         File file = new File(getApplicationContext().getFilesDir(), fileName);
         file.delete();
@@ -551,48 +553,48 @@ public class HomeScreenActivity extends AppCompatActivity implements NavigationV
         }
     }
 
-    protected static void buttonColorSet(FloatingActionButton fab, String [] colors, int i)
-    {
-        //Set color of button
-        if(colors[i].equals("b"))
-        {
-            fab.setBackgroundTintList(ColorStateList.valueOf(Color.BLUE));
-        }
-        else if(colors[i].equals("c"))
-        {
-            fab.setBackgroundTintList(ColorStateList.valueOf(Color.CYAN));
-        }
-        else if(colors[i].equals("d"))
-        {
-            fab.setBackgroundTintList(ColorStateList.valueOf(Color.DKGRAY));
-        }
-        else if(colors[i].equals("l"))
-        {
-            fab.setBackgroundTintList(ColorStateList.valueOf(Color.LTGRAY));
-        }
-        else if(colors[i].equals("e"))
-        {
-            fab.setBackgroundTintList(ColorStateList.valueOf(Color.GRAY));
-        }
-        else if(colors[i].equals("g"))
-        {
-            fab.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
-        }
-        else if(colors[i].equals("m"))
-        {
-            fab.setBackgroundTintList(ColorStateList.valueOf(Color.MAGENTA));
-        }
-        else if(colors[i].equals("r"))
-        {
-            fab.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
-        }
-        else if(colors[i].equals("y"))
-        {
-            fab.setBackgroundTintList(ColorStateList.valueOf(Color.YELLOW));
-        }
-        else
-        {
-            fab.setBackgroundTintList(ColorStateList.valueOf(Color.BLACK));
-        }
-    }
+//    protected static void buttonColorSet(FloatingActionButton fab, String [] colors, int i)
+//    {
+//        //Set color of button
+//        if(colors[i].equals("b"))
+//        {
+//            fab.setBackgroundTintList(ColorStateList.valueOf(Color.BLUE));
+//        }
+//        else if(colors[i].equals("c"))
+//        {
+//            fab.setBackgroundTintList(ColorStateList.valueOf(Color.CYAN));
+//        }
+//        else if(colors[i].equals("d"))
+//        {
+//            fab.setBackgroundTintList(ColorStateList.valueOf(Color.DKGRAY));
+//        }
+//        else if(colors[i].equals("l"))
+//        {
+//            fab.setBackgroundTintList(ColorStateList.valueOf(Color.LTGRAY));
+//        }
+//        else if(colors[i].equals("e"))
+//        {
+//            fab.setBackgroundTintList(ColorStateList.valueOf(Color.GRAY));
+//        }
+//        else if(colors[i].equals("g"))
+//        {
+//            fab.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+//        }
+//        else if(colors[i].equals("m"))
+//        {
+//            fab.setBackgroundTintList(ColorStateList.valueOf(Color.MAGENTA));
+//        }
+//        else if(colors[i].equals("r"))
+//        {
+//            fab.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+//        }
+//        else if(colors[i].equals("y"))
+//        {
+//            fab.setBackgroundTintList(ColorStateList.valueOf(Color.YELLOW));
+//        }
+//        else
+//        {
+//            fab.setBackgroundTintList(ColorStateList.valueOf(Color.BLACK));
+//        }
+//    }
 }
