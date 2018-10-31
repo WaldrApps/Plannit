@@ -2,19 +2,16 @@ package waldrapps.plannit;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import waldrapps.plannit.Contact;
+import waldrapps.plannit.adapters.ContactAdapter;
 
 /**
  * Created by Christopher on 12/22/2016.
@@ -58,9 +55,9 @@ public class RecycleListener implements View.OnClickListener {
                                 if(!(loc == i))
                                 {
                                     //Add data, flag and name
-                                    fullString = contacts.get(i).getPlanner() + "~" + contacts.get(i).getFlag() + "~" + contacts.get(i).getColor() + "~" + contacts.get(i).getName();
+//                                    fullString = contacts.get(i).getPlanner() + "~" + contacts.get(i).getFlag() + "~" + contacts.get(i).getColor() + "~" + contacts.get(i).getName();
                                     //Save to file
-                                    fileSave(fullString);
+//                                    fileSave(fullString);
                                 }
                             }
                             contacts.remove(loc);
@@ -83,10 +80,10 @@ public class RecycleListener implements View.OnClickListener {
         {
 
             boolean clicked [] = new boolean [140];
-            String s = contacts.get(loc).getPlanner();
+//            String s = contacts.get(loc).getPlanner();
             for(int i=0;i<140;i++)
             {
-                clicked[i] = (s.charAt(i)=='1');
+//                clicked[i] = (s.charAt(i)=='1');
             }
 //            Intent intent = new Intent(context, EnterSchedule.class);
 //            intent.putExtra("PLANNER", clicked);

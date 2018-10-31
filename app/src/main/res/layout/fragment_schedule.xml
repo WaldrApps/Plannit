@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.framgia.library.calendardayview.CalendarDayView
+            android:id="@+id/schedule"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:dayHeight="@dimen/dayHeight"
+            android:paddingTop="8dp"
+            android:paddingBottom="32dp">
+
+        </com.framgia.library.calendardayview.CalendarDayView>
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>
