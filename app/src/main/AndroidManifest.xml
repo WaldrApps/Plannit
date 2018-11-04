@@ -28,6 +28,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="waldrapps.plannit.activities.HomeScreenActivity" />
         </activity>
+        <activity android:name=".activities.ShareActivity" />
+        <activity android:name=".activities.ShareDisplayActivity"></activity>
     </application>
 
 </manifest>

@@ -41,6 +41,14 @@
     <string name="start_time">Start Time</string>
     <string name="end_time">End Time</string>
     <string name="no_name">No name</string>
+
+
+    <string name="create_qr">Share a QR code</string>
+    <string name="create_link">Share a link</string>
+    <string name="link_label">Plannit share link</string>
+    <string name="clipboard">Copied to clipboard</string>
+    <string name="share_error">an error occured, please try again</string>
+
     <string-array name="days_of_week_array">
         <item>Monday</item>
         <item>Tuesday</item>

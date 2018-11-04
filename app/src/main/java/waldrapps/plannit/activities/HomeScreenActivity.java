@@ -167,6 +167,7 @@ public class HomeScreenActivity extends AppCompatActivity implements NavigationV
 //                    Toast.makeText(this, "You do not have enough contacts to create a group", Toast.LENGTH_LONG).show();
                 break;
             case R.id.nav_share:
+                shareSchedule();
 //                if(contacts.size() > 0)
 //                    shareSelect();
 //                else
@@ -266,6 +267,10 @@ public class HomeScreenActivity extends AppCompatActivity implements NavigationV
 //        b.putSerializable("CONTACTS", contacts);
 //        intent.putExtras(b);
 //        startActivity(intent);
+    }
+    private void shareSchedule() {
+        Intent intent = new Intent(this, ShareActivity.class);
+        startActivity(intent);
     }
 
     private void createGroup()
