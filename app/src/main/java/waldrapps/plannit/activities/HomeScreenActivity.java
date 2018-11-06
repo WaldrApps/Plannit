@@ -110,6 +110,7 @@ public class HomeScreenActivity extends AppCompatActivity implements NavigationV
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
+        // We use different method to create menu as a hamburger instead of 3 dots
         // Inflate the menu; this adds items to the action bar if it is present.
 //        getMenuInflater().inflate(R.menu.home_screen, menu);
         return true;

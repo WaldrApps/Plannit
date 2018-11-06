@@ -8,6 +8,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- Custom theme for settings test -->
+    <style name="CustomTheme1" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#bf1e1e</item>
+    </style>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
