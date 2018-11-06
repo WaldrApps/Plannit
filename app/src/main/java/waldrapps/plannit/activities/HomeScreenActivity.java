@@ -179,6 +179,9 @@ public class HomeScreenActivity extends AppCompatActivity implements NavigationV
             case R.id.nav_about:
                 about();
                 break;
+            case R.id.action_settings:
+                settings();
+                break;
             default:
                 drawer.closeDrawer(GravityCompat.START);
         }
@@ -283,6 +286,12 @@ public class HomeScreenActivity extends AppCompatActivity implements NavigationV
     {
 //        Intent intent = new Intent(this, AboutScreen.class);
 //        startActivity(intent);
+    }
+
+    private void settings()
+    {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
     }
 
     private void setupRecyclerView() {
