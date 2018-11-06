@@ -35,7 +35,7 @@ public abstract class AppCompatPreferenceActivity extends PreferenceActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if ((id == android.R.id.home) && (SettingsActivity.base)) {
+        if (id == android.R.id.home) {
             NavUtils.navigateUpFromSameTask(this);
             return true;
         }
