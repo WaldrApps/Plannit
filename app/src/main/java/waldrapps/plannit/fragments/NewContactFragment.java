@@ -31,7 +31,7 @@ import waldrapps.plannit.adapters.CalendarPagerAdapter;
 import waldrapps.plannit.viewmodels.ContactViewModel;
 import waldrapps.plannit.viewmodels.EventViewModel;
 
-public class NewContactFragment extends Fragment {
+public class NewContactFragment extends BaseFragment {
 
     private ContactViewModel contactViewModel;
     private EventViewModel eventViewModel;

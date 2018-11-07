@@ -8,10 +8,11 @@ import android.view.MenuItem;
 import waldrapps.plannit.R;
 import waldrapps.plannit.fragments.NewContactFragment;
 
-public class NewContactActivity extends FragmentActivity {
+public class NewContactActivity extends BaseFragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+//        setTheme(R.style.CustomTheme1);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_contact);
         //Start new contact fragment

@@ -18,6 +18,7 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </android.support.design.widget.AppBarLayout>
+    <!-- inside .Toolbar: app:theme="@style/CustomTheme1"-->
 
     <include layout="@layout/content_home_screen" />
 

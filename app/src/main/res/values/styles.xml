@@ -8,6 +8,19 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- Custom dark theme -->
+    <style name="CustomTheme1" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/drkTheme_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/drkTheme_colorPrimaryDark</item>
+        <item name="colorAccent">@color/drkTheme_colorAccent</item>
+    </style>
+
+    <style name="CustomTheme1_withBar" parent="Theme.AppCompat">
+        <item name="colorPrimary">@color/drkTheme_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/drkTheme_colorPrimaryDark</item>
+        <item name="colorAccent">@color/drkTheme_colorAccent</item>
+    </style>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
