@@ -8,9 +8,17 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <!-- Custom theme for settings test -->
-    <style name="CustomTheme1" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">#bf1e1e</item>
+    <!-- Custom dark theme -->
+    <style name="CustomTheme1" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/drkTheme_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/drkTheme_colorPrimaryDark</item>
+        <item name="colorAccent">@color/drkTheme_colorAccent</item>
+    </style>
+
+    <style name="CustomTheme1_withBar" parent="Theme.AppCompat">
+        <item name="colorPrimary">@color/drkTheme_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/drkTheme_colorPrimaryDark</item>
+        <item name="colorAccent">@color/drkTheme_colorAccent</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
