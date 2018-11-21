@@ -17,5 +17,6 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </android.support.design.widget.AppBarLayout>
+    <!-- inside .Toolbar: app:theme="@style/CustomTheme1"-->
 
 </android.support.design.widget.CoordinatorLayout>

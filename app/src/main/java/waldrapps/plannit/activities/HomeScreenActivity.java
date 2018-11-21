@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Canvas;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.DialogFragment;
@@ -15,11 +16,13 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import java.util.List;
@@ -32,7 +35,7 @@ import waldrapps.plannit.adapters.ContactAdapter;
 import waldrapps.plannit.fragments.DeleteDialogFragment;
 import waldrapps.plannit.viewmodels.ContactViewModel;
 
-public class HomeScreenActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, DeleteDialogFragment.DeleteDialogListener {
+public class HomeScreenActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, DeleteDialogFragment.DeleteDialogListener {
 
     private ContactViewModel contactViewModel;
     private ContactAdapter adapter;
@@ -62,10 +65,12 @@ public class HomeScreenActivity extends AppCompatActivity implements NavigationV
         contactViewModel.getAllContacts().observe(this, new Observer<List<Contact>>() {
             @Override
             public void onChanged(@Nullable final List<Contact> contacts) {
-//                Update the cached copy of contacts in the adapter
+                //Update the cached copy of contacts in the adapter
                 adapter.setContacts(contacts);
             }
         });
+
+        PreferenceManager.setDefaultValues(this, R.xml.pref_general, false);
     }
 
     //Create help message
@@ -101,12 +106,6 @@ public class HomeScreenActivity extends AppCompatActivity implements NavigationV
             case android.R.id.home:
                 drawerLayout.openDrawer(GravityCompat.START);
                 return true;
-        }
-
-//        else if(id==R.id.help)
-//        {
-//            alert();
-//        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -147,6 +146,9 @@ public class HomeScreenActivity extends AppCompatActivity implements NavigationV
             case R.id.nav_about:
                 //        Intent intent = new Intent(this, AboutScreen.class);
 //        startActivity(intent);
+                break;
+            case R.id.action_settings:
+                settings();
                 break;
             default:
                 drawerLayout.closeDrawer(GravityCompat.START);
@@ -195,4 +197,9 @@ public class HomeScreenActivity extends AppCompatActivity implements NavigationV
         //User touched the dialog's negative button
     }
 
+    private void settings()
+    {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+    }
 }
