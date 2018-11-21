@@ -106,6 +106,7 @@ public class HomeScreenActivity extends BaseActivity implements NavigationView.O
             case android.R.id.home:
                 drawerLayout.openDrawer(GravityCompat.START);
                 return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -197,8 +198,7 @@ public class HomeScreenActivity extends BaseActivity implements NavigationView.O
         //User touched the dialog's negative button
     }
 
-    private void settings()
-    {
+    private void settings() {
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
