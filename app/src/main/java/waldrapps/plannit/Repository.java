@@ -29,6 +29,10 @@ public class Repository {
         return allEvents;
     }
 
+    public void deleteContact(Contact contact) {
+        AsyncTask.execute(() -> contactDao.delete(contact));
+    }
+
     public void insertContact(Contact contact) {
         new insertAsyncContactTask(contactDao).execute(contact);
     }

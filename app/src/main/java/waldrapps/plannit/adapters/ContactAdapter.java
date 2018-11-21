@@ -1,29 +1,33 @@
 package waldrapps.plannit.adapters;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Calendar;
 import java.util.List;
 
 import waldrapps.plannit.Contact;
 import waldrapps.plannit.R;
+import waldrapps.plannit.activities.HomeScreenActivity;
 
 public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactViewHolder> {
 
-    class ContactViewHolder extends RecyclerView.ViewHolder {
+    public class ContactViewHolder extends RecyclerView.ViewHolder {
         public TextView name;
         public ImageView icon;
 
         ContactViewHolder(View view) {
             super(view);
-            name = view.findViewById(R.id.textView);
-            icon = view.findViewById(R.id.imageView);
+            name = view.findViewById(R.id.contact_name);
+            icon = view.findViewById(R.id.person_icon);
         }
     }
 
@@ -33,13 +37,21 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
 
     public ContactAdapter(Context context) { inflater = LayoutInflater.from(context); }
 
+    @NonNull
     @Override
-    public ContactAdapter.ContactViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ContactAdapter.ContactViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.list_item_contact, parent, false);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(v.getContext(), "Recycler",
+                        Toast.LENGTH_LONG).show();
+            }
+        });
         return new ContactViewHolder(view);
     }
 
-    public void onBindViewHolder(final ContactViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final ContactViewHolder holder, final int position) {
         if(contacts != null) {
             Contact current = contacts.get(position);
             //Find current date and time
@@ -64,7 +76,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
                 holder.icon.setImageResource(R.drawable.ic_people);
             }
             else {
-                holder.icon.setImageResource(R.drawable.ic_person);
+                holder.icon.setImageResource(R.drawable.ic_person_white_24dp);
             }
 
             //Set name
@@ -79,6 +91,10 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
     public void setContacts(List<Contact> contacts){
         this.contacts = contacts;
         notifyDataSetChanged();
+    }
+
+    public Contact getItem(int pos) {
+        return contacts.get(pos);
     }
 
     @Override
