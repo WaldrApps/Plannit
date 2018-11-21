@@ -35,12 +35,18 @@
     <string name="tuesday_short">Tue</string>
     <string name="monday_short">Mon</string>
     <string name="placeholder_contact_name">Contact Name</string>
-    <string name="person_icon_description">Person Icon</string>
     <string name="add_event">Add Event</string>
     <string name="event_name">Event Name</string>
     <string name="start_time">Start Time</string>
     <string name="end_time">End Time</string>
     <string name="no_name">No name</string>
+    <string name="delete_caps">DELETE</string>
+    <string name="delete">Delete</string>
+    <string name="delete_question">Are you sure you want to permanently delete this contact?</string>
+    <string name="delete_icon_description">Delete icon</string>
+    <string name="person_icon_description">Person icon</string>
+    <string name="edit_caps">EDIT</string>
+    <string name="cancel">Cancel</string>
     <string-array name="days_of_week_array">
         <item>Monday</item>
         <item>Tuesday</item>

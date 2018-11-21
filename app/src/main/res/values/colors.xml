@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#003300</color>
     <color name="colorAccent">#4c8c4a</color>
     <color name="black">#000000</color>
+    <color name="delete_list_item_background">#ff000d</color>
+    <color name="edit_list_item_background">#0022ff</color>
 </resources>
