@@ -7,4 +7,7 @@
     <color name="drkTheme_colorPrimary">#2b2b2b</color>
     <color name="drkTheme_colorPrimaryDark">#000000</color>
     <color name="drkTheme_colorAccent">#808080</color>
+    <color name="white">#ffffff</color>
+    <color name="light_blue">#0aa0ff</color>
+    <color name="light_gray">#808080</color>
 </resources>

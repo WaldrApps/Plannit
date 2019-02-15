@@ -29,5 +29,9 @@ public class ContactViewModel extends AndroidViewModel {
         repository.deleteContact(contact);
     }
 
-    public Contact getContactById(int id) { return repository.getContactById(id); }
+    public void deleteAllContacts() {
+        repository.deleteAllContacts();
+    }
+
+    public Contact getContactById(String id) { return repository.getContactById(id); }
 }

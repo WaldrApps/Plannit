@@ -1,5 +1,6 @@
 package waldrapps.plannit;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
@@ -12,6 +13,10 @@ public class Repository {
     private EventDao eventDao;
     private LiveData<List<Contact>> allContacts;
     private LiveData<List<Event>> allEvents;
+
+    public interface OnTaskCompleted{
+        void onTaskCompleted(List<Event> events);
+    }
 
     public Repository(Application application) {
         DatabaseSingleton db = DatabaseSingleton.getDatabase(application);
@@ -33,12 +38,42 @@ public class Repository {
         AsyncTask.execute(() -> contactDao.delete(contact));
     }
 
+    @SuppressLint("StaticFieldLeak")
+    public void deleteAllContacts() {
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                contactDao.deleteAllContacts();
+                return null;
+            }
+        }.execute();
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    public void deleteAllEvents() {
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                eventDao.deleteAllEvents();
+                return null;
+            }
+        }.execute();
+    }
+
     public void insertContact(Contact contact) {
         new insertAsyncContactTask(contactDao).execute(contact);
     }
 
-    public Contact getContactById(int id) {
+    public Contact getContactById(String id) {
         return contactDao.getContactById(id);
+    }
+
+    public LiveData<List<Event>> getEventsByContactIDLive(String id) {
+        return eventDao.getEventsByContactIDLive(id);
+    }
+
+    public void getEventsByContactID(String id, OnTaskCompleted onTaskCompleted) {
+        new getEventsByContactIDAsyncTask(eventDao, onTaskCompleted).execute(id);
     }
 
     private static class insertAsyncContactTask extends AsyncTask<Contact, Void, Void> {
@@ -64,8 +99,8 @@ public class Repository {
         return eventDao.getEventById(id);
     }
 
-    public LiveData<List<Event>> getEventsByContactAndDay(String contactId, int dayOfWeek) {
-        return eventDao.getEventsByContactAndDay(contactId, dayOfWeek);
+    public LiveData<List<Event>> getEventsByContactIDAndDay(String contactID, int day) {
+        return eventDao.getEventsByContactIDAndDay(contactID, day);
     }
 
     private static class insertAsyncEventTask extends AsyncTask<Event, Void, Void> {
@@ -80,6 +115,27 @@ public class Repository {
         protected Void doInBackground(final Event... params) {
             asyncTaskDao.insert(params[0]);
             return null;
+        }
+    }
+
+    private static class getEventsByContactIDAsyncTask extends AsyncTask<String, Void, List<Event>> {
+
+        private EventDao asyncTaskDao;
+        private OnTaskCompleted onTaskCompletedlistener;
+
+        getEventsByContactIDAsyncTask(EventDao dao, OnTaskCompleted onTaskCompletedlistener) {
+            asyncTaskDao = dao;
+            this.onTaskCompletedlistener = onTaskCompletedlistener;
+        }
+
+        @Override
+        protected List<Event> doInBackground(final String... params) {
+            return asyncTaskDao.getEventsByContactID(params[0]);
+        }
+
+        @Override
+        protected void onPostExecute(List<Event> result) {
+            onTaskCompletedlistener.onTaskCompleted(result);
         }
     }
 }

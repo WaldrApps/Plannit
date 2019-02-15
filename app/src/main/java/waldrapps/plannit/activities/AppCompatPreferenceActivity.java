@@ -1,6 +1,5 @@
 package waldrapps.plannit.activities;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;

@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activities.HomeScreenActivity"
+            android:name=".activities.HomeActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -22,16 +22,29 @@
         <activity
             android:name=".activities.NewContactActivity"
             android:label="@string/title_activity_new_contact"
-            android:parentActivityName=".activities.HomeScreenActivity"
+            android:parentActivityName=".activities.HomeActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="waldrapps.plannit.activities.HomeScreenActivity" />
+                android:value="waldrapps.plannit.activities.HomeActivity" />
+        </activity>
+        <activity
+            android:name=".activities.OverviewActivity"
+            android:label="@string/title_activity_overview"
+            android:parentActivityName=".activities.HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="waldrapps.plannit.activities.HomeActivity" />
         </activity>
         <activity
             android:name=".activities.SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:parentActivityName=".activities.HomeScreenActivity" />
+            android:parentActivityName=".activities.HomeActivity" />
+        <activity
+            android:name=".activities.GroupActivity"
+            android:label="@string/title_activity_group"
+            android:parentActivityName=".activities.HomeActivity" />
     </application>
 
 </manifest>

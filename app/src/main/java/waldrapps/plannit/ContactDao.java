@@ -11,17 +11,17 @@ import java.util.List;
 @Dao
 public interface ContactDao {
     @Insert
-    void insert(Contact contact);
+    void insert(Contact contactOld);
 
     @Delete
-    void delete(Contact contact);
+    void delete(Contact contactOld);
 
-    @Query("DELETE FROM contacts")
+    @Query("DELETE FROM Contact")
     void deleteAllContacts();
 
-    @Query("SELECT * from contacts")
+    @Query("SELECT * from Contact")
     LiveData<List<Contact>> getAllContacts();
 
-    @Query("SELECT * from contacts WHERE id = :id")
-    Contact getContactById(int id);
+    @Query("SELECT * from Contact WHERE id = :id")
+    Contact getContactById(String id);
 }

@@ -3,7 +3,6 @@ package waldrapps.plannit.fragments;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -41,16 +40,8 @@ public class DeleteDialogFragment extends DialogFragment {
          //Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setMessage(R.string.delete_question)
-                .setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        deleteDialogListener.onDialogPositiveClick(DeleteDialogFragment.this);
-                    }
-                })
-                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        deleteDialogListener.onDialogNegativeClick(DeleteDialogFragment.this);
-                    }
-                });
+                .setPositiveButton(R.string.delete, (dialog, id) -> deleteDialogListener.onDialogPositiveClick(DeleteDialogFragment.this))
+                .setNegativeButton(R.string.cancel, (dialog, id) -> deleteDialogListener.onDialogNegativeClick(DeleteDialogFragment.this));
         // Create the AlertDialog object and return it
         return builder.create();
     }

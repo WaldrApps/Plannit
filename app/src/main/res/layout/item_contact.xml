@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/card_margin"
+    card_view:cardBackgroundColor="?colorPrimary"
+    card_view:cardCornerRadius="8dp"
+    card_view:cardElevation="8dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/list_item_padding">
+
+        <ImageView
+            android:id="@+id/person_icon"
+            android:layout_width="@dimen/ic_person"
+            android:layout_height="@dimen/ic_person"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/list_item_padding"
+            android:contentDescription="@string/person_icon_description"
+            android:src="@drawable/ic_person_white_24dp" />
+
+        <TextView
+            android:id="@+id/contact_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/placeholder_contact_name"
+            android:layout_toStartOf="@id/checkbox"
+            android:layout_toEndOf="@id/person_icon"
+            android:textSize="13sp"/>
+
+        <CheckBox
+            android:id="@+id/checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:visibility="gone"/>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
