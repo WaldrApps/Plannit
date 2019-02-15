@@ -17,7 +17,8 @@
             android:ems="10"
             android:inputType="textCapSentences|textAutoCorrect"
             android:maxLength="20"
-            android:hint="@string/contact"/>
+            android:hint="@string/event_name"
+            android:importantForAutofill="no" />
 
         <Button
             android:id="@+id/buttonStartTime"
@@ -30,6 +31,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/end_time" />
+
+        <EditText
+            android:id="@+id/editTextPlace"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textCapSentences|textAutoCorrect"
+            android:maxLength="20"
+            android:hint="@string/event_location"
+            android:importantForAutofill="no" />
 
         <Spinner
             android:id="@+id/spinner"
